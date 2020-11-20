@@ -16,15 +16,16 @@
 #include "character_manipulation.h"
 #include "linked_list.h"
 #include "node_struct.h"
+#include "file_manipulation.h"
 
 int main() {
 
 	setbuf(stdin, NULL);
 
-	char *string = "Hello and Welcome";
-	linked_list *llist2 = string_to_array(string);
+	char *file_path = "src\\message.txt";
+	linked_list *llist3 = file_to_array(file_path);
 
-	linked_node *curr = llist2->start;
+	linked_node *curr = llist3->start;
 
 	while (curr != NULL) {
 		printf("char: %c freq: %d\n", curr->node->character,
@@ -33,7 +34,22 @@ int main() {
 	}
 
 	/*
-	 printf("=========== Linked List Testing============\n");
+	 printf("=========== Strign to array testing ============\n");
+	 char *string = "Hello and Welcome";
+	 linked_list *llist2 = string_to_array(string);
+
+	 linked_node *curr = llist2->start;
+
+	 while (curr != NULL) {
+	 printf("char: %c freq: %d\n", curr->node->character,
+	 curr->node->frequency);
+	 curr = curr->next;
+	 }
+
+	 */
+
+	/*
+	 printf("=========== Linked List Testing ============\n");
 
 	 //testing to see if linked list insert works
 	 struct node *node1 = (node*) malloc(sizeof(node));

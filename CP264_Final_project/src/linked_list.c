@@ -16,7 +16,11 @@
 #include "linked_list.h"
 
 void insert_linked_list(linked_list *llist, node *node) {
-	//inserts based on node frequency
+	/*
+	 * inserts based on node frequency. This way the linked
+	 * is sorted.
+	 *
+	 */
 
 	int inserted = 0;
 	linked_node **curr = &(llist->start);
@@ -54,7 +58,9 @@ void insert_linked_list(linked_list *llist, node *node) {
 }
 
 linked_node* linked_list_newNode(node *node) {
-	//creates new linked list node
+	/*
+	 * Creates new linked list node
+	 */
 	linked_node *new_node = (linked_node*) malloc(sizeof(linked_node));
 	new_node->next = new_node->previous = NULL;
 	new_node->node = node;

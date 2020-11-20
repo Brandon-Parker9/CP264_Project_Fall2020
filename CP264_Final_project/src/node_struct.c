@@ -16,7 +16,9 @@
 #include "node_struct.h"
 
 node* new_node(char character, int frequency) {
-	//creates new node from character and frequency
+	/*
+	 * Creates new node from character and frequency
+	 */
 
 	node *new_node = (node*) malloc(sizeof(node));
 	new_node->left = new_node->right = NULL;
