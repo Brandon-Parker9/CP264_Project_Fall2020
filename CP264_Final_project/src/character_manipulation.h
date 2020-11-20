@@ -1,6 +1,6 @@
 /*
  -------------------------------------
- File:    character_manipulation.c
+ File:    character_manipulation.h
  Project: CP264_Final_project
  file description
  -------------------------------------
@@ -10,9 +10,16 @@
  Version  2020-11-19
  -------------------------------------
  */
-#include <string.h>
-#include "character_manipulation.h"
+#ifndef CHARACTER_MANIPULATION_H_
+#define CHARACTER_MANIPULATION_H_
 
-void string_to_array(char *string) {
-	printf("String length: %d", strlen(string));
-}
+typedef struct char_item {
+	char character;
+	int frequency;
+
+} char_item;
+
+void string_to_array(char *string);
+
+#endif /* CHARACTER_MANIPULATION_H_ */
+

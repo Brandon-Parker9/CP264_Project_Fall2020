@@ -13,13 +13,17 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "character_manipulation.h"
 
 int main() {
 
 	//comments
 	setbuf(stdin, NULL);
 
-	printf("Hello World!");
+	char *string = "Hello and Welcome";
+
+	printf("Hello World!\n");
+	string_to_array(string);
 
 	return 0;
 
