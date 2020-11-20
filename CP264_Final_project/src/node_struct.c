@@ -10,16 +10,3 @@
  Version  2020-11-19
  -------------------------------------
  */
-
-#include <stdio.h>
-#include <stdlib.h>
-
-int main() {
-
-	setbuf(stdin, NULL);
-
-	printf("Hello World!");
-
-	return 0;
-
-}
