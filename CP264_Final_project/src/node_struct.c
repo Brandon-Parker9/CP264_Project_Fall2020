@@ -27,4 +27,3 @@ node* new_node(char character, int frequency) {
 
 	return new_node;
 }
-
