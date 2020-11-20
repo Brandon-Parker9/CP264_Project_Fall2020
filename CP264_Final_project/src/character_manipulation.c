@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "character_manipulation.h"
+#include "node_struct.h"
 
 int frequency_array[255] = { 0 };
 
@@ -33,5 +34,9 @@ void string_to_array(char *string) {
 		}
 
 	}
+}
+
+void array_to_sorted_llist(int frequency_array) {
+
 }
 

@@ -16,9 +16,18 @@
 #define LINKED_LIST_H_
 
 typedef struct linked_node {
-	linked_node *next;
-	linked_node *previous;
+	struct linked_node *next;
+	struct linked_node *previous;
 	node *node;
 } linked_node;
+
+typedef struct linked_list {
+	struct linked_node *start;
+	struct linked_node *end;
+} linked_list;
+
+void insert_linked_list(linked_list *llist, node *node);
+
+linked_node* linked_list_newNode(node *node);
 
 #endif /* LINKED_LIST_H_ */
