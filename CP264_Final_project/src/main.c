@@ -33,6 +33,12 @@ int main() {
 		curr = curr->next;
 	}
 
+	printf("\n===== End of linked List =====\n");
+	printf("char: %c freq: %d\n", llist3->end->node->character,
+			llist3->end->node->frequency);
+	printf("char: %c freq: %d\n", llist3->end->previous->node->character,
+			llist3->end->previous->node->frequency);
+
 	/*
 	 printf("=========== Strign to array testing ============\n");
 	 char *string = "Hello and Welcome";
