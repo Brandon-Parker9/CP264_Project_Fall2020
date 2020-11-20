@@ -13,13 +13,15 @@
 #ifndef CHARACTER_MANIPULATION_H_
 #define CHARACTER_MANIPULATION_H_
 
+#include "linked_list.h"
+
 typedef struct char_item {
 	char character;
 	int frequency;
 
 } char_item;
 
-void string_to_array(char *string);
+linked_list* string_to_array(char *string);
 
 #endif /* CHARACTER_MANIPULATION_H_ */
 

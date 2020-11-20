@@ -20,4 +20,6 @@ typedef struct node {
 	char character;
 } node;
 
+node* new_node(char character, int number);
+
 #endif /* NODE_STRUCT_H_ */
