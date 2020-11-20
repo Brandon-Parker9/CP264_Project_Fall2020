@@ -16,6 +16,7 @@
 
 int main() {
 
+	//comments
 	setbuf(stdin, NULL);
 
 	printf("Hello World!");
