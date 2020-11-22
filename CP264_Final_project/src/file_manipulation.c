@@ -20,7 +20,7 @@ linked_list* file_to_array(char *file_path) {
 	/*
 	 * takes a file path as a string
 	 * and converts the contents of the file to
-	 * a sorted linked list.
+	 * a sorted linked list based on character frequency.
 	 *
 	 * Return;
 	 * 	sorted linked list
@@ -61,3 +61,4 @@ linked_list* file_to_array(char *file_path) {
 	}
 	return llist1;
 }
+
