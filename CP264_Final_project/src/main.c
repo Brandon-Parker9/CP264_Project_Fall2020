@@ -18,27 +18,76 @@
 #include "node_struct.h"
 #include "file_manipulation.h"
 
+void inorder(node *root) {
+//checks is root is NULL
+	if (root != NULL) {
+		//Goes left until nothing is there
+		inorder(root->left);
+		//prints out value of node
+		printf("Character: %c Frequency: %d\n", root->character,
+				root->frequency);
+		//then goes right
+		inorder(root->right);
+	}
+}
+
 int main() {
 
 	setbuf(stdin, NULL);
 
 	char *file_path = "src\\message.txt";
 	linked_list *llist3 = file_to_array(file_path);
+	node *root = (node*) malloc(sizeof(node));
 
 	linked_node *curr = llist3->start;
+	root = create_tree_from_linked_list(llist3);
 
-	while (curr != NULL) {
-		printf("char: %c freq: %d\n", curr->node->character,
-				curr->node->frequency);
-		curr = curr->next;
-	}
+	/*test to make sure the new BST was generate properly
 
-	printf("\n===== End of linked List =====\n");
-	printf("char: %c freq: %d\n", llist3->end->node->character,
-			llist3->end->node->frequency);
-	printf("char: %c freq: %d\n", llist3->end->previous->node->character,
-			llist3->end->previous->node->frequency);
+	 //prints of the contents of linked list
+	 while (curr != NULL) {
+	 printf("char: %c freq: %d\n", curr->node->character,
+	 curr->node->frequency);
+	 curr = curr->next;
+	 }
+	 //checks to see if two end nodes are correct
+	 printf("\n===== End of linked List =====\n");
+	 printf("char: %c freq: %d\n", llist3->end->node->character,
+	 llist3->end->node->frequency);
+	 printf("char: %c freq: %d\n", llist3->end->previous->node->character,
+	 llist3->end->previous->node->frequency);
+	 printf("==================================\n");
+	 //creates the new BST
+	 root = create_tree_from_linked_list(llist3);
+	 curr = llist3->start;
 
+	 //checks to see how many elements are in thee linked list after BST creation(should only be 1)
+	 while (curr != NULL) {
+	 printf("char: %c freq: %d\n", curr->node->character,
+	 curr->node->frequency);
+	 curr = curr->next;
+	 }
+
+	 //prints out the data of the tree inorder
+	 printf("===== Inorder ======\n");
+
+	 inorder(root);
+	 */
+	/*
+	 printf("\n===== End of linked List After join_end_nodes =====\n");
+	 printf("char: %c freq: %d\n", llist3->end->node->character,
+	 llist3->end->node->frequency);
+	 printf("char: %c freq: %d\n", llist3->end->previous->node->character,
+	 llist3->end->previous->node->frequency);
+
+	 curr = llist3->start;
+
+	 while (curr != NULL) {
+	 printf("char: %c freq: %d\n", curr->node->character,
+	 curr->node->frequency);
+	 curr = curr->next;
+	 }
+	 */
 	/*
 	 printf("=========== Strign to array testing ============\n");
 	 char *string = "Hello and Welcome";
