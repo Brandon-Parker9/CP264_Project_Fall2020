@@ -4,7 +4,7 @@
  Project: CP264_Final_project
  file description
  -------------------------------------
- Author:  Brandon Parker
+ Author:  Brandon Parker, Joshua Philips
  ID:      191593730
  Email:   park3730@mylaurier.ca
  Version  2020-11-20
@@ -29,35 +29,40 @@ linked_list* file_to_array(char *file_path) {
 
 	//initializes new linked list
 	linked_list *llist1 = (linked_list*) malloc(sizeof(linked_list));
-	llist1->end = llist1->start = NULL;
-	FILE *infile;
+	llist1->end = NULL;
+	llist1->start = NULL;
+	FILE *file;
 
-	//Opens file
-	infile = fopen(file_path, "r");
+	//Opens file, we use rb so that our program works with non-text files
+	file = fopen(file_path, "rb");
 
 	//checks for opening correctly
-	if (infile == NULL) {
+	if (file == NULL) {
 		printf("File not open: NULL");
-	} else {
-		char *string_from_file;
-		long length;
+	} 
+	else 
+	{
+		int size;
 
-		fseek(infile, 0, SEEK_END);
-		length = ftell(infile);
-		fseek(infile, 0, SEEK_SET);
+		//determining the amount of bytes in file for the calloc then setting it back
+		fseek(file, SEEK_SET, SEEK_END);
+		size = ftell(file);
+		fseek(file, SEEK_SET, SEEK_SET);
 
-		string_from_file = malloc(length);
+		//creating needed variables, use calloc as it inits to 0
+		unsigned char* contents = (unsigned char*)calloc(size + 1, sizeof(unsigned char));
+		int count = 0;
+		int endcheck = NULL;
 
-		//gets file data
-		fread(string_from_file, 1, length, infile);
+		//grabbingg contents of the file
+		fread(contents, 1, size, file);
 
 		//Closes file
-		fclose(infile);
-
-		printf("String from file:\n\n%s\n", string_from_file);
+		fclose(file);
+		printf("String from file:\n\n%s\n", contents);
 
 		//creates a linked list from string
-		llist1 = string_to_array(string_from_file);
+		llist1 = string_to_array(contents);
 	}
 	return llist1;
 }
