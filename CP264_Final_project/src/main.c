@@ -18,6 +18,7 @@
 #include "node_struct.h"
 #include "file_manipulation.h"
 
+//used for testing purposes
 void inorder(node *root) {
 //checks is root is NULL
 	if (root != NULL) {
