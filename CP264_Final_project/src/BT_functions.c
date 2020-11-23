@@ -11,3 +11,15 @@
  -------------------------------------
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include "node_struct.h"
+#include "linked_list.h"
+
+void search_binary_tree(node *root, char character, int *left, int *right) {
+	while (root->character != character) {
+
+	}
+
+}
+
