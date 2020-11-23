@@ -20,7 +20,7 @@ linked_list* file_to_array(char *file_path);
  * a sorted linked list based on character frequency.
  *
  * Return;
- * 	sorted linked list
+ * 	sorted linked list (linked_list*)
  *
  */
 

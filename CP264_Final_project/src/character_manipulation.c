@@ -24,7 +24,7 @@ linked_list* string_to_array(char *string) {
 	 * The array is sorted by frequency from largest to smallest.
 	 *
 	 * Parameters:
-	 *
+	 *	Takes a string (char *)
 	 *
 	 * Return:
 	 * 	linked_list* - point to a linked_list
