@@ -39,9 +39,7 @@ linked_list* file_to_array(char *file_path) {
 	//checks for opening correctly
 	if (file == NULL) {
 		printf("File not open: NULL");
-	} 
-	else 
-	{
+	} else {
 		int size;
 
 		//determining the amount of bytes in file for the calloc then setting it back
@@ -50,9 +48,7 @@ linked_list* file_to_array(char *file_path) {
 		fseek(file, SEEK_SET, SEEK_SET);
 
 		//creating needed variables, use calloc as it inits to 0
-		unsigned char* contents = (unsigned char*)calloc(size + 1, sizeof(unsigned char));
-		int count = 0;
-		int endcheck = NULL;
+		char *contents = (char*) calloc(size + 1, sizeof(char));
 
 		//grabbingg contents of the file
 		fread(contents, 1, size, file);
