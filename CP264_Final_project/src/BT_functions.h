@@ -13,7 +13,6 @@
 #ifndef BT_FUNCTIONS_H_
 #define BT_FUNCTIONS_H_
 
-void binary_tree_to_array(node *root, char character, char **string,
-		char *array[]);
+void binary_tree_to_array(node *root, char **string, char *array[]);
 
 #endif /* BT_FUNCTIONS_H_ */

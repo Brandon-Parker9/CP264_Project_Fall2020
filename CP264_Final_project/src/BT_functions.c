@@ -17,24 +17,49 @@
 #include "node_struct.h"
 #include "linked_list.h"
 
-void binary_tree_to_array(node *root, char character, char **string,
-		char *array[]) {
-	if (root != NULL) {
-		//Goes left until nothing is there
-		strcat(*string, "L");
+void binary_tree_to_array(node *root, char **string, char *array[]) {
+	/*
+	 *
+	 * this function goes through the entire binary tree and creates
+	 * an array of all the 0's and 1's need for each character.
+	 *  example - "001" left, left, right
+	 *
+	 *  The array then can be indexed based on the character ascii value.
+	 *
+	 *  When calling this function, use the root node of the tree.
+	 *  Also, use the an array of like this - char *array[255];
+	 *	and a string variable like this - char *string;
+	 *
+	 *	How to call:
+	 *		binary_tree_to_array(root, &string, array);
+	 */
 
-		binary_tree_to_array(root->left, character, string, array);
+	if (root != NULL) {
+
+		//adds a 0 before going left
+		strcat(*string, "0");
+
+		//goes left in the tree
+		binary_tree_to_array(root->left, string, array);
+
+		//removes the last character by setting it to NULL
 		(*string)[strlen((*string)) - 1] = 0;
 
+		//the the character at the node is not NULL, then the 0's and 1's
+		//are added to the array based on the character ascii value.
 		if (root->character != '\0') {
-			printf("Character: %c String: %s\n", root->character, *string);
-			array[(int) root->character] = *string;
+			// this is was for testing purposes - printf("Character: %c String: %s\n", root->character, *string);
+			array[((int) root->character)] = malloc(strlen(*string) + 1);
+			strcpy(array[((int) root->character)], *string);
 		}
 
-		strcat(*string, "r");
+		//adds a 1 before going left
+		strcat(*string, "1");
 
-		binary_tree_to_array(root->right, character, string, array);
+		//goes right in the tree
+		binary_tree_to_array(root->right, string, array);
 
+		//removes the last character by setting it to NULL
 		(*string)[strlen((*string)) - 1] = 0;
 
 	}
