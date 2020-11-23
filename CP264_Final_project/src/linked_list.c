@@ -105,7 +105,7 @@ node* join_end_nodes(linked_list *llist) {
 
 	new_node->right = (*end)->node;
 	new_node->left = (*second_from_end)->node;
-
+	new_node->character = '\0';
 	//sets the new end node for llist and updates what its next node is
 	if (llist->length > 2) {
 		(*second_from_end)->previous->next = NULL;

@@ -17,6 +17,7 @@
 #include "linked_list.h"
 #include "node_struct.h"
 #include "file_manipulation.h"
+#include "BT_functions.h"
 
 //used for testing purposes
 void inorder(node *root) {
@@ -25,8 +26,13 @@ void inorder(node *root) {
 		//Goes left until nothing is there
 		inorder(root->left);
 		//prints out value of node
-		printf("Character: %c Frequency: %d\n", root->character,
-				root->frequency);
+		if (root->character != '\0') {
+			printf("Character: %c Frequency: %d\n", root->character,
+					root->frequency);
+		} else {
+			printf("Character: NULL Frequency: %d\n", root->frequency);
+		}
+
 		//then goes right
 		inorder(root->right);
 	}
@@ -40,13 +46,20 @@ int main() {
 	linked_list *llist3 = file_to_array(file_path);
 	node *root = (node*) malloc(sizeof(node));
 
-	linked_node *curr = llist3->start;
+	//linked_node *curr = llist3->start;
 	root = create_tree_from_linked_list(llist3);
 
 	//prints out the data of the tree inorder
 	printf("===== Inorder ======\n");
 
 	inorder(root);
+
+	char *string;
+	int left = 0, right = 0;
+	printf("================================\n");
+	search_binary_tree(root, 'c', &left, &right, &string);
+
+	printf("\nCharacter: %c", root->right->right->left->character);
 
 	/*test to make sure the new BST was generate properly
 

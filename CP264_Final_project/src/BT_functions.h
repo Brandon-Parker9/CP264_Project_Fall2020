@@ -13,6 +13,7 @@
 #ifndef BT_FUNCTIONS_H_
 #define BT_FUNCTIONS_H_
 
-void search_binary_tree(node *root, char character, int *left, int *right);
+void search_binary_tree(node *root, char character, int *left, int *right,
+		char **string);
 
 #endif /* BT_FUNCTIONS_H_ */
