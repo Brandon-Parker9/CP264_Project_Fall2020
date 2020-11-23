@@ -43,6 +43,11 @@ int main() {
 	linked_node *curr = llist3->start;
 	root = create_tree_from_linked_list(llist3);
 
+	//prints out the data of the tree inorder
+	printf("===== Inorder ======\n");
+
+	inorder(root);
+
 	/*test to make sure the new BST was generate properly
 
 	 //prints of the contents of linked list
