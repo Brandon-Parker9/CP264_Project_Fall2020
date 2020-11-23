@@ -28,11 +28,46 @@ typedef struct linked_list {
 } linked_list;
 
 void insert_linked_list(linked_list *llist, node *node);
+/*
+ * inserts based on node frequency. This way the linked
+ * is sorted.
+ *
+ * Parameters:
+ * 	Takes a linked list (linked_list*) and node (node *)
+ *
+ */
 
 node* create_tree_from_linked_list(linked_list *llist);
+/*
+ * this function creates a BST from a sorted linked list.
+ *
+ *	Parameters:
+ *		Takes a linked list (linked_list *)
+ *
+ *  Return:
+ *  	the root of the new BST (node*)
+ *
+ */
 
 node* join_end_nodes(linked_list *llist);
+/*
+ *
+ * This function pops of the rear two nodes of
+ * the linked list. Then joins their data
+ * to create new node.
+ *
+ * Return:
+ *  	new node (node*)
+ *
+ */
 
 linked_node* linked_list_newNode(node *node);
+/*
+ * Creates new linked list node
+ *
+ * Return:
+ * 		returns new linked node (linked_node*)
+ *
+ */
 
 #endif /* LINKED_LIST_H_ */

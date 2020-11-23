@@ -18,6 +18,9 @@
 node* new_node(char character, int frequency) {
 	/*
 	 * Creates new node from character and frequency
+	 *
+	 * Returns:
+	 * 	returns new node (node*)
 	 */
 
 	node *new_node = (node*) malloc(sizeof(node));

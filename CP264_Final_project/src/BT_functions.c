@@ -17,7 +17,7 @@
 #include "node_struct.h"
 #include "linked_list.h"
 
-void binary_tree_to_array(node *root, char **string, char *array[]) {
+void binary_tree_to_array(node *root, char *array[]) {
 	/*
 	 *
 	 * this function goes through the entire binary tree and creates
@@ -27,40 +27,48 @@ void binary_tree_to_array(node *root, char **string, char *array[]) {
 	 *  The array then can be indexed based on the character ascii value.
 	 *
 	 *  When calling this function, use the root node of the tree.
-	 *  Also, use the an array of like this - char *array[255];
-	 *	and a string variable like this - char *string;
+	 *
+	 *  Parameters:
+	 *
+	 *  	Also, use an array of like this - char *array[255];
 	 *
 	 *	How to call:
-	 *		binary_tree_to_array(root, &string, array);
+	 *		binary_tree_to_array(root, array);
 	 */
+
+	//string to keep track of all the 0's and 1's, i thought a size of 100 should be enough
+	//realistically probably 50 would do or even less
+	static char string1[100];
 
 	if (root != NULL) {
 
 		//adds a 0 before going left
-		strcat(*string, "0");
+		printf("1");
+		strcat(string1, "0");
 
 		//goes left in the tree
-		binary_tree_to_array(root->left, string, array);
+		binary_tree_to_array(root->left, array);
 
 		//removes the last character by setting it to NULL
-		(*string)[strlen((*string)) - 1] = 0;
+		(string1)[strlen((string1)) - 1] = 0;
 
 		//the the character at the node is not NULL, then the 0's and 1's
 		//are added to the array based on the character ascii value.
 		if (root->character != '\0') {
-			// this is was for testing purposes - printf("Character: %c String: %s\n", root->character, *string);
-			array[((int) root->character)] = malloc(strlen(*string) + 1);
-			strcpy(array[((int) root->character)], *string);
+			// this is was for testing purposes -
+			printf("Character: %c String: %s\n", root->character, string1);
+			array[((int) root->character)] = malloc(strlen(string1) + 1);
+			strcpy(array[((int) root->character)], string1);
 		}
 
 		//adds a 1 before going left
-		strcat(*string, "1");
+		strcat(string1, "1");
 
 		//goes right in the tree
-		binary_tree_to_array(root->right, string, array);
+		binary_tree_to_array(root->right, array);
 
 		//removes the last character by setting it to NULL
-		(*string)[strlen((*string)) - 1] = 0;
+		(string1)[strlen((string1)) - 1] = 0;
 
 	}
 }

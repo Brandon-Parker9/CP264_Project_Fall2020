@@ -23,6 +23,9 @@ linked_list* string_to_array(char *string) {
 	 * creates an linked list of nodes from a string.
 	 * The array is sorted by frequency from largest to smallest.
 	 *
+	 * Parameters:
+	 *
+	 *
 	 * Return:
 	 * 	linked_list* - point to a linked_list
 	 *
