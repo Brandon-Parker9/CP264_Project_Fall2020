@@ -17,27 +17,24 @@
 #include "node_struct.h"
 #include "linked_list.h"
 
-void search_binary_tree(node *root, char character, int *left, int *right,
-		char **string) {
+void binary_tree_to_array(node *root, char character, char **string,
+		char *array[]) {
 	if (root != NULL) {
 		//Goes left until nothing is there
-		(*left)++;
 		strcat(*string, "L");
 
-		search_binary_tree(root->left, character, left, right, string);
-		(*left)--;
+		binary_tree_to_array(root->left, character, string, array);
 		(*string)[strlen((*string)) - 1] = 0;
 
 		if (root->character != '\0') {
-			printf("Character: %c Right: %d Left: %d String: %s\n",
-					root->character, *right, *left, *string);
+			printf("Character: %c String: %s\n", root->character, *string);
+			array[(int) root->character] = *string;
 		}
-		(*right)++;
+
 		strcat(*string, "r");
 
-		search_binary_tree(root->right, character, left, right, string);
+		binary_tree_to_array(root->right, character, string, array);
 
-		(*right)--;
 		(*string)[strlen((*string)) - 1] = 0;
 
 	}

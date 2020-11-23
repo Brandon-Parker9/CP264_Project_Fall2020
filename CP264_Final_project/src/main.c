@@ -55,11 +55,19 @@ int main() {
 	inorder(root);
 
 	char *string;
-	int left = 0, right = 0;
+	char array[255];
+
 	printf("================================\n");
-	search_binary_tree(root, 'c', &left, &right, &string);
+
+	binary_tree_to_array(root, 'c', &string, &array);
 
 	printf("\nCharacter: %c", root->right->right->left->character);
+	printf("\nCharacter: %c",
+			root->left->right->right->left->right->right->right->character);
+	printf("\nCharacter: %c",
+			root->left->right->left->left->right->right->left->right->right->character); //should be x
+
+	printf("\nString: %s", &array[(int) 'e']);
 
 	/*test to make sure the new BST was generate properly
 
