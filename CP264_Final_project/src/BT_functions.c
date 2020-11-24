@@ -43,7 +43,6 @@ void binary_tree_to_array(node *root, char *array[]) {
 	if (root != NULL) {
 
 		//adds a 0 before going left
-		printf("1");
 		strcat(string1, "0");
 
 		//goes left in the tree
@@ -55,8 +54,7 @@ void binary_tree_to_array(node *root, char *array[]) {
 		//the the character at the node is not NULL, then the 0's and 1's
 		//are added to the array based on the character ascii value.
 		if (root->character != '\0') {
-			// this is was for testing purposes -
-			printf("Character: %c String: %s\n", root->character, string1);
+			// this is was for testing purposes - printf("Character: %c String: %s\n", root->character, string1);
 			array[((int) root->character)] = malloc(strlen(string1) + 1);
 			strcpy(array[((int) root->character)], string1);
 		}

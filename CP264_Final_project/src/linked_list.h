@@ -15,12 +15,14 @@
 #ifndef LINKED_LIST_H_
 #define LINKED_LIST_H_
 
+//double linked list node structure
 typedef struct linked_node {
 	struct linked_node *next;
 	struct linked_node *previous;
 	node *node;
 } linked_node;
 
+//structure to have start and end all in one place
 typedef struct linked_list {
 	struct linked_node *start;
 	struct linked_node *end;
