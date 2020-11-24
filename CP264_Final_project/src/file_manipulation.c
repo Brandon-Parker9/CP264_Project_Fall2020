@@ -52,10 +52,6 @@ linked_list* file_to_array(char *file_path) {
 
 		char *contents = (char*) calloc(size + 1, sizeof(char));
 
-		int count = 0;
-		int endcheck = NULL;
-
-
 		//grabbingg contents of the file
 		fread(contents, 1, size, file);
 
@@ -63,7 +59,6 @@ linked_list* file_to_array(char *file_path) {
 		fclose(file);
 
 		// this line is for testing purposes - printf("String from file:\n\n%s\n", contents);
-
 
 		//creates a linked list from string
 		llist1 = string_to_array(contents);
