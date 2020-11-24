@@ -40,6 +40,7 @@ linked_list* file_to_array(char *file_path) {
 	if (file == NULL) {
 		printf("File not open: NULL");
 	} else {
+
 		int size;
 
 		//determining the amount of bytes in file for the calloc then setting it back
@@ -48,14 +49,21 @@ linked_list* file_to_array(char *file_path) {
 		fseek(file, SEEK_SET, SEEK_SET);
 
 		//creating needed variables, use calloc as it inits to 0
+
 		char *contents = (char*) calloc(size + 1, sizeof(char));
+
+		int count = 0;
+		int endcheck = NULL;
+
 
 		//grabbingg contents of the file
 		fread(contents, 1, size, file);
 
 		//Closes file
 		fclose(file);
+
 		// this line is for testing purposes - printf("String from file:\n\n%s\n", contents);
+
 
 		//creates a linked list from string
 		llist1 = string_to_array(contents);
