@@ -20,10 +20,10 @@ linked_list* file_to_array(char *file_path) {
 	/*
 	 * takes a file path as a string
 	 * and converts the contents of the file to
-	 * a sorted linked list.
+	 * a sorted linked list based on character frequency.
 	 *
 	 * Return;
-	 * 	sorted linked list
+	 * 	sorted linked list (linked_list*)
 	 *
 	 */
 
@@ -39,9 +39,8 @@ linked_list* file_to_array(char *file_path) {
 	//checks for opening correctly
 	if (file == NULL) {
 		printf("File not open: NULL");
-	} 
-	else 
-	{
+	} else {
+
 		int size;
 
 		//determining the amount of bytes in file for the calloc then setting it back
@@ -50,19 +49,20 @@ linked_list* file_to_array(char *file_path) {
 		fseek(file, SEEK_SET, SEEK_SET);
 
 		//creating needed variables, use calloc as it inits to 0
-		unsigned char* contents = (unsigned char*)calloc(size + 1, sizeof(unsigned char));
-		int count = 0;
-		int endcheck = NULL;
+
+		char *contents = (char*) calloc(size + 1, sizeof(char));
 
 		//grabbingg contents of the file
 		fread(contents, 1, size, file);
 
 		//Closes file
 		fclose(file);
-		printf("String from file:\n\n%s\n", contents);
+
+		// this line is for testing purposes - printf("String from file:\n\n%s\n", contents);
 
 		//creates a linked list from string
 		llist1 = string_to_array(contents);
 	}
 	return llist1;
 }
+

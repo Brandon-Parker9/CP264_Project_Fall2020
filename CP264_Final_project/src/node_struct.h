@@ -21,5 +21,11 @@ typedef struct node {
 } node;
 
 node* new_node(char character, int number);
+/*
+ * Creates new node from character and frequency
+ *
+ * Returns:
+ * 	returns new node (node*)
+ */
 
 #endif /* NODE_STRUCT_H_ */

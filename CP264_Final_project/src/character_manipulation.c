@@ -10,7 +10,7 @@
  Version  2020-11-19
  -------------------------------------
  */
-
+//hello
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -22,6 +22,9 @@ linked_list* string_to_array(char *string) {
 	/*
 	 * creates an linked list of nodes from a string.
 	 * The array is sorted by frequency from largest to smallest.
+	 *
+	 * Parameters:
+	 *	Takes a string (char *)
 	 *
 	 * Return:
 	 * 	linked_list* - point to a linked_list
