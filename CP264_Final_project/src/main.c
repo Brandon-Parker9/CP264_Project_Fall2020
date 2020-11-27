@@ -19,6 +19,10 @@
 #include "file_manipulation.h"
 #include "BT_functions.h"
 
+//global for the encode search
+int encode = 0;
+char* contents;
+
 //used for testing purposes
 void inorder(node *root) {
 //checks is root is NULL
@@ -38,163 +42,117 @@ void inorder(node *root) {
 	}
 }
 
+void file_to_array(char* file_path) {
+	/*
+	 * takes a file path as a string
+	 * and converts the contents of the file to
+	 * a sorted linked list based on character frequency.
+	 *
+	 * Return;
+	 * 	sorted linked list
+	 *
+	 */
+	FILE* file;
+
+	//Opens file, we use rb so that our program works with non-text files
+	file = fopen(file_path, "rb");
+
+	//checks for opening correctly
+	if (file == NULL) {
+		printf("File not open: NULL");
+	}
+	else {
+		int size;
+
+		//determining the amount of bytes in file for the calloc then setting it back
+		fseek(file, SEEK_SET, SEEK_END);
+		size = ftell(file);
+		fseek(file, SEEK_SET, SEEK_SET);
+
+		//creating needed variables, use calloc as it inits to 0
+		contents = (char*)calloc(size + 1, sizeof(char));
+
+		//grabbingg contents of the file
+		fread(contents, 1, size, file);
+
+		//Closes file
+		fclose(file);
+		printf("String from file:\n\n%s\n", contents);
+	}
+	return;
+}
+
+void CompressTree(unsigned int data)
+{
+	FILE* file;
+	char location[] = "compress.dat";
+	file = fopen(location, "wb");
+	fwrite(data, sizeof(unsigned int), 1, file);
+	fclose(file);
+	return;
+}
+
+int find_binary_tree_encode_val(node* root, char val) {
+	/*
+	 *
+	 * this function goes through the entire binary tree and finds
+	 *	the encode val to return it
+	 *
+	 *	How to call:
+	 *		val = binary_tree_find_encode_val(root, char);
+	 */
+
+	if (root != NULL && encode == 0) {
+
+		//goes left in the tree
+		if (root->left != NULL)
+			find_binary_tree_encode_val(root->left, val);
+
+		//	the the character at the node is not NULL, then the current value is saved
+		//	for future use in the encoding
+		if (root->character == val)
+		{
+			encode = root->value;
+		}
+
+		//goes right in the tree
+		if (root->right != NULL)
+		{
+			find_binary_tree_encode_val(root->right, val);
+		}
+	}
+}
+
 int main() {
 
 	setbuf(stdin, NULL);
 
-	//file path of the file that we are working with
-	char *file_path = "src\\message.txt";
-
-	//creates a linked list from the the characters in the file
-	linked_list *llist = file_to_array(file_path);
+	char *file_path = "message.txt";
+	file_to_array(file_path);
+	linked_list *llist3 = file_to_list(file_path);
 	node *root = (node*) malloc(sizeof(node));
 
-	//the creates the binary tree from the linked list and returns
-	//the root node of the tree
-	root = create_tree_from_linked_list(llist);
+	//linked_node *curr = llist3->start;
+	root = create_tree_from_linked_list(llist3);
 
-	//this array will store all the strings the correspond to
-	//the character location example: "101"
-	char *BT_character_location[255];
+	//prints out the data of the tree inorder
+	printf("===== Inorder ======\n");
 
-	//this takes the root node and the array and adds the strings the corresponding
-	//array index with the character location example: "101"
-	binary_tree_to_array(root, BT_character_location);
+	inorder(root);
 
-	printf("===== Testing to show how to use array =====\n");
+	char *array[255];
 
-	//the array is indexed based on the character ascii value
-	printf("\nLetter 'e' location in tree: %s\n",
-			BT_character_location[((int) 'e')]);
+	printf("================================\n");
 
-	printf("\nLetter 'w' location in tree: %s\n",
-			BT_character_location[((int) 'w')]);
+	binary_tree_to_array(root, 0, 0);
 
-	//this will prove that the values above are correct
-	//I will traverse the BT based on the 1' and 0's
-
-	printf("\nThe character located at 111 is: %c\n",
-			root->right->right->right->character);
-
-	printf("\nThe character located at 001011 is: %c\n",
-			root->left->left->right->left->right->right->character);
-
-	/* Another block of test code, not really needed
-	 //prints out the data of the tree inorder
-	 printf("===== Inorder ======\n");
-
-	 inorder(root);
-
-	 char *array[255];
-
-	 printf("================================\n");
-
-	 binary_tree_to_array(root, array);
-
-	 printf("\nString: %s", array[(int) 'e']);
-	 printf("\nString: %s", array[(int) ' ']);
-
-	 */
-
-	/*test to make sure the new BST was generate properly
-
-	 //prints of the contents of linked list
-	 while (curr != NULL) {
-	 printf("char: %c freq: %d\n", curr->node->character,
-	 curr->node->frequency);
-	 curr = curr->next;
-	 }
-	 //checks to see if two end nodes are correct
-	 printf("\n===== End of linked List =====\n");
-	 printf("char: %c freq: %d\n", llist3->end->node->character,
-	 llist3->end->node->frequency);
-	 printf("char: %c freq: %d\n", llist3->end->previous->node->character,
-	 llist3->end->previous->node->frequency);
-	 printf("==================================\n");
-	 //creates the new BST
-	 root = create_tree_from_linked_list(llist3);
-	 curr = llist3->start;
-
-	 //checks to see how many elements are in thee linked list after BST creation(should only be 1)
-	 while (curr != NULL) {
-	 printf("char: %c freq: %d\n", curr->node->character,
-	 curr->node->frequency);
-	 curr = curr->next;
-	 }
-
-	 //prints out the data of the tree inorder
-	 printf("===== Inorder ======\n");
-
-	 inorder(root);
-	 */
-	/*
-	 printf("\n===== End of linked List After join_end_nodes =====\n");
-	 printf("char: %c freq: %d\n", llist3->end->node->character,
-	 llist3->end->node->frequency);
-	 printf("char: %c freq: %d\n", llist3->end->previous->node->character,
-	 llist3->end->previous->node->frequency);
-
-	 curr = llist3->start;
-
-	 while (curr != NULL) {
-	 printf("char: %c freq: %d\n", curr->node->character,
-	 curr->node->frequency);
-	 curr = curr->next;
-	 }
-	 */
-	/*
-	 printf("=========== Strign to array testing ============\n");
-	 char *string = "Hello and Welcome";
-	 linked_list *llist2 = string_to_array(string);
-
-	 linked_node *curr = llist2->start;
-
-	 while (curr != NULL) {
-	 printf("char: %c freq: %d\n", curr->node->character,
-	 curr->node->frequency);
-	 curr = curr->next;
-	 }
-
-	 */
-
-	/*
-	 printf("=========== Linked List Testing ============\n");
-
-	 //testing to see if linked list insert works
-	 struct node *node1 = (node*) malloc(sizeof(node));
-
-	 struct node *node2 = (node*) malloc(sizeof(node));
-	 struct node *node3 = (node*) malloc(sizeof(node));
-	 struct node *node4 = (node*) malloc(sizeof(node));
-
-	 node1->character = 'A';
-	 node1->frequency = 10;
-
-	 node2->character = 'c';
-	 node2->frequency = 12;
-
-	 node3->character = 'e';
-	 node3->frequency = 20;
-
-	 node4->character = 'Y';
-	 node4->frequency = 2;
-
-	 linked_list *llist1 = (linked_list*) malloc(sizeof(linked_list));
-	 llist1->end = llist1->start = NULL;
-
-	 insert_linked_list(llist1, node1);
-	 insert_linked_list(llist1, node2);
-	 insert_linked_list(llist1, node3);
-	 insert_linked_list(llist1, node4);
-
-	 linked_node *curr = llist1->start;
-
-	 while (curr != NULL) {
-	 printf("char: %c freq: %d\n", curr->node->character,
-	 curr->node->frequency);
-	 curr = curr->next;
-	 }
-	 */
+	for (int i = 0; i < strlen(contents); i++) 
+	{
+		encode = 0;
+		find_binary_tree_encode_val(root, contents[i]);
+		printf("%x", encode);
+		CompressTree(encode);
+	}
 	return 0;
 
 }

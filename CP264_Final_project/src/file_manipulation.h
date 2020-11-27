@@ -13,14 +13,14 @@
 #ifndef FILE_MANIPULATION_H_
 #define FILE_MANIPULATION_H_
 
-linked_list* file_to_array(char *file_path);
+linked_list* file_to_list(char* file_path);
 /*
  * takes a file path as a string
  * and converts the contents of the file to
  * a sorted linked list based on character frequency.
  *
  * Return;
- * 	sorted linked list (linked_list*)
+ * 	sorted linked list
  *
  */
 
