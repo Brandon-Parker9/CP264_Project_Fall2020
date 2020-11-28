@@ -23,6 +23,7 @@
 //global for the encode search
 int encode = 0;
 char* contents;
+char decode;
 
 //used for testing purposes
 void inorder(node *root) {
@@ -35,7 +36,7 @@ void inorder(node *root) {
 			printf("Character: %c Frequency: %d\n", root->character,
 					root->frequency);
 		} else {
-			printf("Character: NULL Frequency: %d\n", root->frequency);
+			//printf("Character: NULL Frequency: %d\n", root->frequency);
 		}
 
 		//then goes right
@@ -44,6 +45,8 @@ void inorder(node *root) {
 }
 
 int main() {
+	if (check_if_compress_exists() == -1)
+		return -1;
 
 	setbuf(stdin, NULL);
 
@@ -66,20 +69,33 @@ int main() {
 
 	//--------------start of encoding process ------------------
 	set_binary_tree_encode_val(root, 0);
-	/* 
-	* TODO: fix the conent saving function as there currently is
-	* memory access issues.
+	/*
 	* TODO: save the node structure to the file as well in
 	* order to be able to decode the file later.
 	*/
-	for (int i = 0; i < strlen(contents); i++) 
+	int test = 0;
+	for (int i = 0; i < strlen(contents); i++)
 	{
+		test = 0;
 		encode = 0;
 		find_binary_tree_encode_val(root, contents[i]);
-		printf("%x", encode);
-		CompressTree(encode);
+		if (encode < 16)
+		{
+			test = encode << 4;
+			encode = 0;
+			if (i + 1 != strlen(contents))
+			{
+				find_binary_tree_encode_val(root, contents[i + 1]);
+				test = test | encode;
+				i++;
+			}
+		}
+		else {
+			test = encode;
+		}
+		printf("%x", test);
+		CompressTree(test);
 	}
 	//--------------end of encoding process --------------------
-	return 0;
-
+return 0;
 }

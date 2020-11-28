@@ -9,8 +9,25 @@
  Version  2020-11-22
  -------------------------------------
  */
-
+#define _CRT_NONSTDC_NO_DEPRECATE
 #include "Encoding.h"
+
+int check_if_compress_exists(void)
+{
+	FILE* file;
+	if (file = fopen("compress.dat", "rb")) 
+	{
+		fclose(file);
+		if (remove("compress.dat") == 0)
+			printf("\n Previous File Deleted successfully\n");
+		else
+		{
+			printf("Unable to delete the previous compression file");
+			return -1;
+		}
+	}
+	return;
+}
 
 void read_file_into_array(char* file_path) {
 	/*
@@ -18,6 +35,7 @@ void read_file_into_array(char* file_path) {
 	 * to be used later for the encoding
 	 */
 	FILE* file;
+	contents = NULL;
 
 	//Opens file, we use rb so that our program works with non-text files
 	file = fopen(file_path, "rb");
@@ -42,11 +60,48 @@ void read_file_into_array(char* file_path) {
 
 		//Closes file
 		fclose(file);
-		printf("String from file:\n\n%s\n", contents);
+		printf("\nString from file:\n\n%s\n", contents);
 	}
 	return;
 }
 
+void read_encode_file_into_array(char* file_path) {
+	/*
+	 * reading all the file into an array that will need
+	 * to be used later for the encoding
+	 */
+	FILE* file;
+	contents = NULL;
+
+	//Opens file, we use rb so that our program works with non-text files
+	file = fopen(file_path, "rb");
+
+	//checks for opening correctly
+	if (file == NULL) {
+		printf("File not open: NULL");
+	}
+	else {
+		int size;
+
+		//determining the amount of bytes in file for the calloc then setting it back
+		fseek(file, SEEK_SET, SEEK_END);
+		size = ftell(file);
+		fseek(file, SEEK_SET, SEEK_SET);
+
+		//creating needed variables, use calloc as it inits to 0
+		contents = (char*)calloc(size + 1, sizeof(char));
+
+		//grabbingg contents of the file
+		fread(contents, 1, size, file);
+
+		//Closes file
+		fclose(file);
+		printf("\nString from file:\n\n%x\n", contents);
+	}
+	return;
+}
+
+//test function
 void find_binary_tree_encode_val(node* root, char val) {
 	/*
 	 *
@@ -78,6 +133,38 @@ void find_binary_tree_encode_val(node* root, char val) {
 	}
 }
 
+//test function
+void find_binary_tree_decode_val(node* root, char val) {
+	/*
+	 *
+	 * this function goes through the entire binary tree and finds
+	 * the encode val to return it
+	 *
+	 *	How to call:
+	 *		find_binary_tree_encode_val(root, char);
+	 */
+
+	if (root != NULL && decode == 0) {
+
+		//goes left in the tree
+		if (root->left != NULL)
+			find_binary_tree_decode_val(root->left, val);
+
+		//	the the character at the node is not NULL, then the current value is saved
+		//	for future use in the encoding
+		if (root->value == val)
+		{
+			decode = root->character;
+		}
+
+		//goes right in the tree
+		if (root->right != NULL)
+		{
+			find_binary_tree_decode_val(root->right, val);
+		}
+	}
+}
+
 void CompressTree(unsigned int data)
 {
 	/*
@@ -91,7 +178,7 @@ void CompressTree(unsigned int data)
 	FILE* file;
 	char location[] = "compress.dat";
 	file = fopen(location, "ab");
-	fwrite(&data, sizeof(unsigned char), 1, file);
+	fwrite(&data, sizeof(char), 1, file);
 	fclose(file);
 	return;
 }
