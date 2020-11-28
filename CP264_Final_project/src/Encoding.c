@@ -90,8 +90,8 @@ void CompressTree(unsigned int data)
 
 	FILE* file;
 	char location[] = "compress.dat";
-	file = fopen(location, "wb");
-	fwrite(data, sizeof(unsigned int), 1, file);
+	file = fopen(location, "ab");
+	fwrite(&data, sizeof(unsigned char), 1, file);
 	fclose(file);
 	return;
 }
@@ -128,5 +128,5 @@ void set_binary_tree_encode_val(node* root, int val) {
 			set_binary_tree_encode_val(root->right, val << 1 | 1);
 		}
 	}
-	return(root, val);
+	return;
 }

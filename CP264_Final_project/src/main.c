@@ -77,7 +77,7 @@ int main() {
 		encode = 0;
 		find_binary_tree_encode_val(root, contents[i]);
 		printf("%x", encode);
-		//CompressTree(encode);
+		CompressTree(encode);
 	}
 	//--------------end of encoding process --------------------
 	return 0;
