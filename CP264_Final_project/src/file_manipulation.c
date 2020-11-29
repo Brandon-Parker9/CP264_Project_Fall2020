@@ -47,10 +47,10 @@ linked_list* file_to_list(char *file_path) {
 		size = ftell(file);
 		fseek(file, SEEK_SET, SEEK_SET);
 
-		//creating needed variables, use calloc as it initializes to 0
+		//creating needed variables, use calloc as it initialize to 0
 		char *contents = (char*) calloc(size + 1, sizeof(char));
 
-		//grabingg contents of the file
+		//grabbing contents of the file
 		fread(contents, 1, size, file);
 
 		//Closes file
