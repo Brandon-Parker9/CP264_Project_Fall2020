@@ -18,6 +18,7 @@ typedef struct node {
 	struct node *right;
 	int frequency;
 	char character;
+	char *bin_vals;
 } node;
 
 node* new_node(char character, int number);

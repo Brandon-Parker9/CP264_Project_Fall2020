@@ -27,6 +27,7 @@ node* new_node(char character, int frequency) {
 	new_node->left = new_node->right = NULL;
 	new_node->frequency = frequency;
 	new_node->character = character;
+	new_node->bin_vals = NULL;
 
 	return new_node;
 }

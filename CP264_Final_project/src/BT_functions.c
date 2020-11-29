@@ -17,7 +17,7 @@
 #include "node_struct.h"
 #include "linked_list.h"
 
-void binary_tree_to_array(node *root, char *array[]) {
+void binary_tree_to_array(node* root, char* array[]) {
 	/*
 	 *
 	 *  this function goes through the entire binary tree and creates
@@ -36,8 +36,8 @@ void binary_tree_to_array(node *root, char *array[]) {
 	 *		binary_tree_to_array(root, array);
 	 */
 
-	//string to keep track of all the 0's and 1's, i thought a size of 100 should be enough
-	//realistically probably 50 would do or even less
+	 //string to keep track of all the 0's and 1's, i thought a size of 100 should be enough
+	 //realistically probably 50 would do or even less
 	static char string1[100];
 
 	if (root != NULL) {
@@ -55,8 +55,8 @@ void binary_tree_to_array(node *root, char *array[]) {
 		//are added to the array based on the character ascii value.
 		if (root->character != '\0') {
 			// this is was for testing purposes - printf("Character: %c String: %s\n", root->character, string1);
-			array[((int) root->character)] = malloc(strlen(string1) + 1);
-			strcpy(array[((int) root->character)], string1);
+			array[((int)root->character)] = malloc(strlen(string1) + 1);
+			strcpy(array[((int)root->character)], string1);
 		}
 
 		//adds a 1 before going left

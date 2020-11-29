@@ -16,8 +16,8 @@
 void binary_tree_to_array(node *root, char *array[]);
 /*
  *
- *  this function goes through the entire binary tree and creates
- *  an array of all the 0's and 1's need for each character.
+ * this function goes through the entire binary tree and creates
+ * an array of all the 0's and 1's need for each character.
  *  example - "001" left, left, right
  *
  *  The array then can be indexed based on the character ascii value.
