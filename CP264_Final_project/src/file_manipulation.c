@@ -55,7 +55,7 @@ linked_list* file_to_list(char *file_path) {
 
 		//Closes file
 		fclose(file);
-		printf("String from file:\n\n%s\n", contents);
+		//printf("String from file:\n\n%s\n", contents);
 
 		//creates a linked list from string
 		llist1 = string_to_array(contents);

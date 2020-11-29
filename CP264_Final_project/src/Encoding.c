@@ -22,7 +22,7 @@ void CompressTree(char *data) {
 	 */
 
 	FILE *file;
-	char location[] = "compress.txt";
+	char location[] = "src\\compress.txt";
 	file = fopen(location, "ab");
 	fwrite(data, sizeof(char), strlen(data), file);
 	fclose(file);
@@ -31,9 +31,9 @@ void CompressTree(char *data) {
 
 int check_if_compress_exists(void) {
 	FILE *file;
-	if ((file = fopen("compress.dat", "rb"))) {
+	if ((file = fopen("src\\compress.txt", "rb"))) {
 		fclose(file);
-		if (remove("compress.dat") == 0)
+		if (remove("src\\compress.txt") == 0)
 			printf("\n Previous File Deleted successfully\n");
 		else {
 			printf("Unable to delete the previous compression file");
@@ -73,7 +73,7 @@ void read_file_into_array(char *file_path) {
 
 		//Closes file
 		fclose(file);
-		printf("\nString from file:\n\n%s\n", contents);
+		//printf("\nString from file:\n\n%s\n", contents);
 	}
 	return;
 }
@@ -103,7 +103,7 @@ void read_encode_file_into_array(char *file_path) {
 		//creating needed variables, use calloc as it inits to 0
 		contents = (char*) calloc(size + 1, sizeof(char));
 
-		//grabbingg contents of the file
+		//grabbing contents of the file
 		fread(contents, 1, size, file);
 
 		//Closes file

@@ -34,7 +34,7 @@ linked_list* string_to_array(char *string) {
 
 	linked_list *llist1 = (linked_list*) malloc(sizeof(linked_list));
 	llist1->end = llist1->start = NULL;
-	int frequency_array[255] = { 0 };
+	int frequency_array[130] = { 0 };
 
 	//goes through each character in the string and updates the frequency array
 	for (int i = 0; i < strlen(string); i++) {
@@ -46,8 +46,9 @@ linked_list* string_to_array(char *string) {
 
 	//goes through all the items in frequency array and adds the characters with
 	//a frequency greater than 0 to the sorted linked list
-	for (int i = 0; i < 255; i++) {
+	for (int i = 0; i < 130; i++) {
 		if (frequency_array[i] != 0) {
+
 			insert_linked_list(llist1, new_node((char) i, frequency_array[i]));
 		}
 	}

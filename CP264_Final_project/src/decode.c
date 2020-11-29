@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "decode.h"
+#include "decode.h"
 
 #include "node_struct.h"
 
@@ -32,23 +32,36 @@ void getFile(node *root) {
 
 	node *curr = root;
 
-	readFile = fopen("msgDecrypt", "r");
+	readFile = fopen("src\\compress.txt", "r");
 
 	while (!feof(readFile)) {
 		fscanf(readFile, "%c", &letter);
-		if (letter == 0 || letter == 1) { //Prevent Infinite loop
-			while (curr->left != NULL || curr->right != NULL) {
-				if (letter == 0)
-					curr = curr->left;
+		//printf("letter: %c\n", letter);
+		if (letter == '0')
+			curr = curr->left;
 
-				else if (letter == 1)
-					curr = curr->right;
-			}
+		else if (letter == '1')
+			curr = curr->right;
+
+		if (curr->character != '\0') {
+			printf("%c", curr->character);
+			curr = root;
 		}
-		printf("%c", curr->character);
 
+		/*
+		 if (letter == '0' || letter == '1') { //Prevent Infinite loop
+		 while (curr->left != NULL || curr->right != NULL) {
+		 if (letter == '0')
+		 curr = curr->left;
+
+		 else if (letter == '1')
+		 curr = curr->right;
+		 }
+		 }
+		 printf("%c", curr->character);
+		 */
 	}
-//    fgets(&letter, 50, readFile);
 
+	//    fgets(&letter, 50, readFile);
 }
 

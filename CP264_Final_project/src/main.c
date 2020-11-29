@@ -19,10 +19,11 @@
 #include "file_manipulation.h"
 #include "BT_functions.h"
 #include "Encoding.h"
+#include "decode.h"
 
 //global for the encode search
-char* encode_string;
-char* contents;
+char *encode_string;
+char *contents;
 
 //used for testing purposes
 void inorder(node *root) {
@@ -44,41 +45,45 @@ void inorder(node *root) {
 }
 
 int main() {
+
 	if (check_if_compress_exists() == -1)
 		return -1;
 
 	setbuf(stdin, NULL);
-	unsigned char tes= 255;
 
-	char *file_path = "message.txt";
+	char *array[130];
+
+	char *file_path = "src\\message.txt";
 	read_file_into_array(file_path);
 	linked_list *llist3 = file_to_list(file_path);
 	node *root = (node*) malloc(sizeof(node));
-
 	//linked_node *curr = llist3->start;
 	root = create_tree_from_linked_list(llist3);
 
+	binary_tree_to_array(root, array);
+
 	//prints out the data of the tree inorder
-	printf("===== Inorder ======\n");
+	//printf("===== Inorder ======\n");
 
-	inorder(root);
+	//inorder(root);
 
-	char *array[255];
-
-	printf("================================\n");
+	printf("================ start of encoding process ================\n");
 
 	//--------------start of encoding process ------------------
-	char* string = (char*)calloc(100 + 1, sizeof(char));
-	set_binary_tree_encode_val(root,string);
-	
-	for (int i = 0; i < strlen(contents); i++)
-	{
+	char *string = (char*) calloc(100 + 1, sizeof(char));
+	set_binary_tree_encode_val(root, string);
+
+	for (int i = 0; i < strlen(contents); i++) {
 		find_binary_tree_encode_val(root, contents[i]);
 		printf("%s", encode_string);
 		CompressTree(encode_string);
 	}
 	//--------------end of encoding process --------------------
-	
-return 0;
+
+	printf("\n================ start of decoding process ================\n");
+
+	getFile(root);
+
+	return 0;
 
 }
