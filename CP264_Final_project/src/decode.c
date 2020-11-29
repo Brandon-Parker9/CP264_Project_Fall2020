@@ -27,7 +27,7 @@ void getFile(node *root) {
 //    Once we hit a leaf print the leaf node.character
 
 	char letter;
-//    int , length, l = 10, j;
+
 	FILE *readFile;
 
 	node *curr = root;
@@ -36,7 +36,7 @@ void getFile(node *root) {
 
 	while (!feof(readFile)) {
 		fscanf(readFile, "%c", &letter);
-		//printf("letter: %c\n", letter);
+
 		if (letter == '0')
 			curr = curr->left;
 
@@ -48,20 +48,7 @@ void getFile(node *root) {
 			curr = root;
 		}
 
-		/*
-		 if (letter == '0' || letter == '1') { //Prevent Infinite loop
-		 while (curr->left != NULL || curr->right != NULL) {
-		 if (letter == '0')
-		 curr = curr->left;
-
-		 else if (letter == '1')
-		 curr = curr->right;
-		 }
-		 }
-		 printf("%c", curr->character);
-		 */
 	}
 
-	//    fgets(&letter, 50, readFile);
 }
 
