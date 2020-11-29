@@ -21,9 +21,8 @@
 #include "Encoding.h"
 
 //global for the encode search
-int encode = 0;
+char* encode_string;
 char* contents;
-char decode;
 
 //used for testing purposes
 void inorder(node *root) {
@@ -49,6 +48,7 @@ int main() {
 		return -1;
 
 	setbuf(stdin, NULL);
+	unsigned char tes= 255;
 
 	char *file_path = "message.txt";
 	read_file_into_array(file_path);
@@ -68,34 +68,17 @@ int main() {
 	printf("================================\n");
 
 	//--------------start of encoding process ------------------
-	set_binary_tree_encode_val(root, 0);
-	/*
-	* TODO: save the node structure to the file as well in
-	* order to be able to decode the file later.
-	*/
-	int test = 0;
+	char* string = (char*)calloc(100 + 1, sizeof(char));
+	set_binary_tree_encode_val(root,string);
+	
 	for (int i = 0; i < strlen(contents); i++)
 	{
-		test = 0;
-		encode = 0;
 		find_binary_tree_encode_val(root, contents[i]);
-		if (encode < 16)
-		{
-			test = encode << 4;
-			encode = 0;
-			if (i + 1 != strlen(contents))
-			{
-				find_binary_tree_encode_val(root, contents[i + 1]);
-				test = test | encode;
-				i++;
-			}
-		}
-		else {
-			test = encode;
-		}
-		printf("%x", test);
-		CompressTree(test);
+		printf("%s", encode_string);
+		CompressTree(encode_string);
 	}
 	//--------------end of encoding process --------------------
+	
 return 0;
+
 }

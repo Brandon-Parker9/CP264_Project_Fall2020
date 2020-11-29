@@ -12,6 +12,24 @@
 #define _CRT_NONSTDC_NO_DEPRECATE
 #include "Encoding.h"
 
+void CompressTree(char* data)
+{
+	/*
+	 * this function will take a integer value and saves it in
+	 * compress.dat value
+	 *
+	 *	How to call:
+	 *		CompressTree(data);
+	 */
+
+	FILE* file;
+	char location[] = "compress.txt";
+	file = fopen(location, "ab");
+	fwrite(data, sizeof(char), strlen(data), file);
+	fclose(file);
+	return;
+}
+
 int check_if_compress_exists(void)
 {
 	FILE* file;
@@ -101,7 +119,6 @@ void read_encode_file_into_array(char* file_path) {
 	return;
 }
 
-//test function
 void find_binary_tree_encode_val(node* root, char val) {
 	/*
 	 *
@@ -112,7 +129,7 @@ void find_binary_tree_encode_val(node* root, char val) {
 	 *		find_binary_tree_encode_val(root, char);
 	 */
 
-	if (root != NULL && encode == 0) {
+	if (root != NULL) {
 
 		//goes left in the tree
 		if (root->left != NULL)
@@ -122,7 +139,8 @@ void find_binary_tree_encode_val(node* root, char val) {
 		//	for future use in the encoding
 		if (root->character == val)
 		{
-			encode = root->value;
+			encode_string = malloc(strlen(root->bin_vals) + 1);
+			encode_string = root->bin_vals;
 		}
 
 		//goes right in the tree
@@ -133,61 +151,12 @@ void find_binary_tree_encode_val(node* root, char val) {
 	}
 }
 
-//test function
-void find_binary_tree_decode_val(node* root, char val) {
-	/*
-	 *
-	 * this function goes through the entire binary tree and finds
-	 * the encode val to return it
-	 *
-	 *	How to call:
-	 *		find_binary_tree_encode_val(root, char);
-	 */
-
-	if (root != NULL && decode == 0) {
-
-		//goes left in the tree
-		if (root->left != NULL)
-			find_binary_tree_decode_val(root->left, val);
-
-		//	the the character at the node is not NULL, then the current value is saved
-		//	for future use in the encoding
-		if (root->value == val)
-		{
-			decode = root->character;
-		}
-
-		//goes right in the tree
-		if (root->right != NULL)
-		{
-			find_binary_tree_decode_val(root->right, val);
-		}
-	}
-}
-
-void CompressTree(unsigned int data)
-{
-	/*
-	 * this function will take a integer value and saves it in
-	 * compress.dat value
-	 *
-	 *	How to call:
-	 *		CompressTree(data);
-	 */
-
-	FILE* file;
-	char location[] = "compress.dat";
-	file = fopen(location, "ab");
-	fwrite(&data, sizeof(char), 1, file);
-	fclose(file);
-	return;
-}
-
-void set_binary_tree_encode_val(node* root, int val) {
+void set_binary_tree_encode_val(node* root, char* string) {
 	/*
 	 *
 	 * this function goes through the entire binary tree and sets 
 	 * the proper encode value for a all symbols in a tree.
+	 * same idea as the one in BT_functions but slightly different
 	 *
 	 *  Encode value can be found with node->value.
 	 *
@@ -201,19 +170,19 @@ void set_binary_tree_encode_val(node* root, int val) {
 
 		//goes left in the tree if the next left is not null, saves time and is safer
 		if (root->left != NULL)
-			set_binary_tree_encode_val(root->left, val << 1);
+			set_binary_tree_encode_val(root->left, strcat(string, "0"));
 
 		//	the the character at the node is not NULL, then the current value is saved
 		//	for future use in the encoding
 		if (root->character != '\0') {
-			root->value = val;
+			root->bin_vals = malloc(strlen(string) + 1);
+			strcpy(root->bin_vals, string);
 		}
 
 		//goes right in the tree if the next right is not null, saves time and is safer
 		if (root->right != NULL)
-		{
-			set_binary_tree_encode_val(root->right, val << 1 | 1);
-		}
+			set_binary_tree_encode_val(root->right, strcat(string, "1"));
 	}
+	(string)[strlen((string)) - 1] = 0;
 	return;
 }
