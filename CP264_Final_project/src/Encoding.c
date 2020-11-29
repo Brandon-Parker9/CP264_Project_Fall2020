@@ -12,8 +12,7 @@
 #define _CRT_NONSTDC_NO_DEPRECATE
 #include "Encoding.h"
 
-void CompressTree(char* data)
-{
+void CompressTree(char *data) {
 	/*
 	 * this function will take a integer value and saves it in
 	 * compress.dat value
@@ -22,7 +21,7 @@ void CompressTree(char* data)
 	 *		CompressTree(data);
 	 */
 
-	FILE* file;
+	FILE *file;
 	char location[] = "compress.txt";
 	file = fopen(location, "ab");
 	fwrite(data, sizeof(char), strlen(data), file);
@@ -30,29 +29,26 @@ void CompressTree(char* data)
 	return;
 }
 
-int check_if_compress_exists(void)
-{
-	FILE* file;
-	if (file = fopen("compress.dat", "rb")) 
-	{
+int check_if_compress_exists(void) {
+	FILE *file;
+	if ((file = fopen("compress.dat", "rb"))) {
 		fclose(file);
 		if (remove("compress.dat") == 0)
 			printf("\n Previous File Deleted successfully\n");
-		else
-		{
+		else {
 			printf("Unable to delete the previous compression file");
 			return -1;
 		}
 	}
-	return;
+	return 0;
 }
 
-void read_file_into_array(char* file_path) {
+void read_file_into_array(char *file_path) {
 	/*
 	 * reading all the file into an array that will need
 	 * to be used later for the encoding
 	 */
-	FILE* file;
+	FILE *file;
 	contents = NULL;
 
 	//Opens file, we use rb so that our program works with non-text files
@@ -61,8 +57,7 @@ void read_file_into_array(char* file_path) {
 	//checks for opening correctly
 	if (file == NULL) {
 		printf("File not open: NULL");
-	}
-	else {
+	} else {
 		int size;
 
 		//determining the amount of bytes in file for the calloc then setting it back
@@ -71,7 +66,7 @@ void read_file_into_array(char* file_path) {
 		fseek(file, SEEK_SET, SEEK_SET);
 
 		//creating needed variables, use calloc as it inits to 0
-		contents = (char*)calloc(size + 1, sizeof(char));
+		contents = (char*) calloc(size + 1, sizeof(char));
 
 		//grabbingg contents of the file
 		fread(contents, 1, size, file);
@@ -83,12 +78,12 @@ void read_file_into_array(char* file_path) {
 	return;
 }
 
-void read_encode_file_into_array(char* file_path) {
+void read_encode_file_into_array(char *file_path) {
 	/*
 	 * reading all the file into an array that will need
 	 * to be used later for the encoding
 	 */
-	FILE* file;
+	FILE *file;
 	contents = NULL;
 
 	//Opens file, we use rb so that our program works with non-text files
@@ -97,8 +92,7 @@ void read_encode_file_into_array(char* file_path) {
 	//checks for opening correctly
 	if (file == NULL) {
 		printf("File not open: NULL");
-	}
-	else {
+	} else {
 		int size;
 
 		//determining the amount of bytes in file for the calloc then setting it back
@@ -107,19 +101,19 @@ void read_encode_file_into_array(char* file_path) {
 		fseek(file, SEEK_SET, SEEK_SET);
 
 		//creating needed variables, use calloc as it inits to 0
-		contents = (char*)calloc(size + 1, sizeof(char));
+		contents = (char*) calloc(size + 1, sizeof(char));
 
 		//grabbingg contents of the file
 		fread(contents, 1, size, file);
 
 		//Closes file
 		fclose(file);
-		printf("\nString from file:\n\n%x\n", contents);
+		printf("\nString from file:\n\n%s\n", contents);
 	}
 	return;
 }
 
-void find_binary_tree_encode_val(node* root, char val) {
+void find_binary_tree_encode_val(node *root, char val) {
 	/*
 	 *
 	 * this function goes through the entire binary tree and finds
@@ -137,24 +131,22 @@ void find_binary_tree_encode_val(node* root, char val) {
 
 		//	the the character at the node is not NULL, then the current value is saved
 		//	for future use in the encoding
-		if (root->character == val)
-		{
+		if (root->character == val) {
 			encode_string = malloc(strlen(root->bin_vals) + 1);
 			encode_string = root->bin_vals;
 		}
 
 		//goes right in the tree
-		if (root->right != NULL)
-		{
+		if (root->right != NULL) {
 			find_binary_tree_encode_val(root->right, val);
 		}
 	}
 }
 
-void set_binary_tree_encode_val(node* root, char* string) {
+void set_binary_tree_encode_val(node *root, char *string) {
 	/*
 	 *
-	 * this function goes through the entire binary tree and sets 
+	 * this function goes through the entire binary tree and sets
 	 * the proper encode value for a all symbols in a tree.
 	 * same idea as the one in BT_functions but slightly different
 	 *

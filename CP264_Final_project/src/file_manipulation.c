@@ -16,22 +16,22 @@
 #include "file_manipulation.h"
 #include "linked_list.h"
 
-linked_list* file_to_list(char* file_path) {
+linked_list* file_to_list(char *file_path) {
 	/*
 	 * takes a file path as a string
 	 * and converts the contents of the file to
 	 * a sorted linked list based on character frequency.
 	 *
 	 * Return;
-	 * 	sorted linked list
+	 * 	sorted linked list (linked_list*)
 	 *
 	 */
 
-	 //initializes new linked list
-	linked_list* llist1 = (linked_list*)malloc(sizeof(linked_list));
+	//initializes new linked list
+	linked_list *llist1 = (linked_list*) malloc(sizeof(linked_list));
 	llist1->end = NULL;
 	llist1->start = NULL;
-	FILE* file;
+	FILE *file;
 
 	//Opens file, we use rb so that our program works with non-text files
 	file = fopen(file_path, "rb");
@@ -39,8 +39,7 @@ linked_list* file_to_list(char* file_path) {
 	//checks for opening correctly
 	if (file == NULL) {
 		printf("File not open: NULL");
-	}
-	else {
+	} else {
 		int size;
 
 		//determining the amount of bytes in file for the calloc then setting it back
@@ -48,10 +47,10 @@ linked_list* file_to_list(char* file_path) {
 		size = ftell(file);
 		fseek(file, SEEK_SET, SEEK_SET);
 
-		//creating needed variables, use calloc as it inits to 0
-		char* contents = (char*)calloc(size + 1, sizeof(char));
+		//creating needed variables, use calloc as it initializes to 0
+		char *contents = (char*) calloc(size + 1, sizeof(char));
 
-		//grabbingg contents of the file
+		//grabingg contents of the file
 		fread(contents, 1, size, file);
 
 		//Closes file

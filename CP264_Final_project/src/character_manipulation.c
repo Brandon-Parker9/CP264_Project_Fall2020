@@ -25,6 +25,7 @@ linked_list* string_to_array(char *string) {
 	 *
 	 * Parameters:
 	 *
+	 * string (char *)
 	 *
 	 * Return:
 	 * 	linked_list* - point to a linked_list
