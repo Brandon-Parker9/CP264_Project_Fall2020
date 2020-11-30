@@ -4,7 +4,7 @@
  Project: CP264_Final_project
  file description
  -------------------------------------
- Author:  Brandon Parker
+ Author:  William Mabia, Tobi Onabolu
  Version  2020-11-28
  -------------------------------------
  */

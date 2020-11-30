@@ -4,7 +4,7 @@
  Project: CP264_Final_project
  file description
  -------------------------------------
- Author:  Brandon Parker, Joshua Philips
+ Author:  Brandon Parker, Joshua Philips, Rufael Musa
  Version  2020-11-20
  -------------------------------------
  */
