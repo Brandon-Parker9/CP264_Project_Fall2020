@@ -29,10 +29,12 @@ void decode_display(node *root) {
 	FILE *readFile;
 
 	node *curr = root;
-
+	
 	readFile = fopen(file_path, "r");
-
+	
+	//go till end of the file
 	while (!feof(readFile)) {
+		//scan each character in the file
 		fscanf(readFile, "%c", &letter);
 
 		//goes left if the character is a 0
