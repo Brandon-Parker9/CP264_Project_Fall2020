@@ -32,7 +32,7 @@
 char *encode_string;
 char *contents;
 //file path for encoded file
-char *file_path = "src\\compress.txt";
+char *file_path = "src\\encoded.dat";
 
 int main() {
 

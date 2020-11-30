@@ -25,13 +25,17 @@ void decode_display(node *root) {
 //    Once we hit a leaf print the leaf node.character
 
 	char letter;
+	char ch;
+	node *curr = root;
 
 	FILE *readFile;
 
-	node *curr = root;
-	
 	readFile = fopen(file_path, "r");
-	
+
+	FILE *output_file;
+
+	output_file = fopen("src\\decoded.txt", "w");
+
 	//go till end of the file
 	while (!feof(readFile)) {
 		//scan each character in the file
@@ -45,14 +49,25 @@ void decode_display(node *root) {
 		else if (letter == '1')
 			curr = curr->right;
 
-		//if character is not NULL, prints out the character
+		//if character is not NULL, prints/writes out the character
 		if (curr->character != '\0') {
+			//outputs the character
 			printf("%c", curr->character);
+
+			//writes the character to the file
+			ch = curr->character;
+			fwrite(&ch, sizeof(char), 1, output_file);
+
+			//updates curr node
 			curr = root;
 		}
 
 	}
 
-}
+	fclose(readFile);
 
+	fclose(output_file);
+
+	return;
+}
 
