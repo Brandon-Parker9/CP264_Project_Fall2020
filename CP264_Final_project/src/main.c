@@ -32,13 +32,14 @@
 //global for the encode search
 char *encode_string;
 char *contents;
+//file path for encoded file
 char *file_path = "src\\compress.txt";
 
 int main() {
 
 	setbuf(stdin, NULL);
 
-	//File to be encoded/decoded
+	//File to be encoded
 	char *text_file = "src\\short.txt";
 
 	printf("\n=============== Checking for Previous File ===============\n");
