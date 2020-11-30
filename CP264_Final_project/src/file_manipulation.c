@@ -5,8 +5,6 @@
  file description
  -------------------------------------
  Author:  Brandon Parker, Joshua Philips
- ID:      191593730
- Email:   park3730@mylaurier.ca
  Version  2020-11-20
  -------------------------------------
  */

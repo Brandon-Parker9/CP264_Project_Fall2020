@@ -4,9 +4,7 @@
  Project: CP264_Final_project
  file description
  -------------------------------------
- Author:  Brandon Parker
- ID:      191593730
- Email:   park3730@mylaurier.ca
+ Author:  Brandon Parker, Rufael Musa
  Version  2020-11-20
  -------------------------------------
  */
@@ -31,7 +29,6 @@ node* new_node(char character, int frequency) {
 	new_node->left = new_node->right = NULL;
 	new_node->frequency = frequency;
 	new_node->character = character;
-	new_node->bin_vals = NULL;
 
 	return new_node;
 }

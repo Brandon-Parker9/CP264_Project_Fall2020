@@ -1,12 +1,10 @@
 /*
  -------------------------------------
  File:    decode.c
- Project: mabi3240_Quiz3
+ Project: CP264 Project
  file description
  -------------------------------------
  Author:  William Mabia, Tobi Onabolu
- ID:      190133240
- Email:   mabi3240@mylaurier.ca
  Version  2020-09-18
  -------------------------------------
  */

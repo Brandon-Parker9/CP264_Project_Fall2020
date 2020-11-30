@@ -3,7 +3,7 @@
  File:    character_manipulation.c
  Project: CP264_Final_project
  -------------------------------------
- Author:  Brandon Parker
+ Author:  Brandon Parker, Rufael Musa
  ID:      191593730
  Email:   park3730@mylaurier.ca
  Version  2020-11-19

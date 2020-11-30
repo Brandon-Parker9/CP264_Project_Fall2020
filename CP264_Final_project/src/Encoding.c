@@ -4,8 +4,6 @@
  Project: CP264_Final_project
  -------------------------------------
  Author:  Joshua Philip
- ID:      160673830
- Email:   phil3830@mylaurier.ca
  Version  2020-11-22
  -------------------------------------
  */

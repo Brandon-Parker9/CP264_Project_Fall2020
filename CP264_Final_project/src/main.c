@@ -4,11 +4,19 @@
  Project: CP264_Final_project
  file description
  -------------------------------------
- Author:  Brandon Parker, Joshua Philip
- ID:      191593730
- Email:   park3730@mylaurier.ca
  Version  2020-11-19
  -------------------------------------
+ */
+
+/*
+ * 		   Group 11
+ *
+ * 		Mabia, William
+ * 		Musa, Rufael
+ * 		Onabolu, Alvin
+ * 		Parker, Brandon
+ * 		Philip, Joshua
+ *
  */
 
 #include <stdio.h>
@@ -31,7 +39,7 @@ int main() {
 	setbuf(stdin, NULL);
 
 	//File to be encoded/decoded
-	char *text_file = "src\\medium.txt";
+	char *text_file = "src\\short.txt";
 
 	printf("\n=============== Checking for Previous File ===============\n");
 
@@ -71,6 +79,8 @@ int main() {
 	//-------------- end of encoding process --------------------
 
 	printf("\n=============== Start of decoding process ================\n\n");
+
+	printf("Decoded Text:\n\n");
 
 	//Decodes and displays the message
 	decode_display(root);
