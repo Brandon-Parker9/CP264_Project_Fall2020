@@ -22,6 +22,9 @@ linked_list* file_to_list(char *file_path) {
 	 * and converts the contents of the file to
 	 * a sorted linked list based on character frequency.
 	 *
+	 * Parameters:
+	 * 	file_path as a string - (char *)
+	 *
 	 * Return;
 	 * 	sorted linked list (linked_list*)
 	 *
@@ -55,7 +58,7 @@ linked_list* file_to_list(char *file_path) {
 
 		//Closes file
 		fclose(file);
-		//printf("String from file:\n\n%s\n", contents);
+		//Testing puposes - printf("String from file:\n\n%s\n", contents);
 
 		//creates a linked list from string
 		llist1 = string_to_array(contents);

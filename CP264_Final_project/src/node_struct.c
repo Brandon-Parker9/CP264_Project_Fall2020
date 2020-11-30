@@ -19,6 +19,10 @@ node* new_node(char character, int frequency) {
 	/*
 	 * Creates new node from character and frequency
 	 *
+	 * Parameters:
+	 * 	character as char
+	 * 	frequency of each character as int
+	 *
 	 * Returns:
 	 * 	returns new node (node*)
 	 */

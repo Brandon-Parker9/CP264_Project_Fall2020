@@ -17,6 +17,9 @@
 #include "node_struct.h"
 #include "linked_list.h"
 
+//This function I created is not used, but it can be.
+//I worte it so I would have abetter understanding
+
 void binary_tree_to_array(node *root, char *array[]) {
 	/*
 	 *

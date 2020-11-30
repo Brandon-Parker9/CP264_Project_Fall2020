@@ -31,7 +31,8 @@ int main() {
 
 	setbuf(stdin, NULL);
 
-	char *text_file = "src\\short.txt";
+	//File to be encoded/decoded
+	char *text_file = "src\\medium.txt";
 
 	printf("\n=============== Checking for Previous File ===============\n");
 

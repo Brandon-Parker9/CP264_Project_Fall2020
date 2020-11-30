@@ -13,6 +13,8 @@
 #ifndef BT_FUNCTIONS_H_
 #define BT_FUNCTIONS_H_
 
+#include "node_struct.h"
+
 void binary_tree_to_array(node *root, char *array[]);
 /*
  *

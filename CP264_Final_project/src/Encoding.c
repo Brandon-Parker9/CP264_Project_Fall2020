@@ -10,6 +10,7 @@
  -------------------------------------
  */
 #define _CRT_NONSTDC_NO_DEPRECATE
+
 #include "Encoding.h"
 #include "global_varibles.h"
 
