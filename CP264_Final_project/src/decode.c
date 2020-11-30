@@ -28,10 +28,12 @@ void decode_display(node *root) {
 	char ch;
 	node *curr = root;
 
+	//opens input file
 	FILE *readFile;
 
 	readFile = fopen(file_path, "r");
 
+	//opens output file
 	FILE *output_file;
 
 	output_file = fopen("src\\decoded.txt", "w");
