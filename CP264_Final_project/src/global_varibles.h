@@ -1,20 +1,18 @@
 /*
  -------------------------------------
- File:    decode.h
+ File:    global_varibles.h
  Project: CP264_Final_project
  file description
  -------------------------------------
  Author:  Brandon Parker
  ID:      191593730
  Email:   park3730@mylaurier.ca
- Version  2020-11-28
+ Version  2020-11-30
  -------------------------------------
  */
-#ifndef DECODE_H_
-#define DECODE_H_
+#ifndef GLOBAL_VARIBLES_H_
+#define GLOBAL_VARIBLES_H_
 
-#include "node_struct.h"
+extern char *file_path;
 
-void decode_display(node *root);
-
-#endif /* DECODE_H_ */
+#endif /* GLOBAL_VARIBLES_H_ */

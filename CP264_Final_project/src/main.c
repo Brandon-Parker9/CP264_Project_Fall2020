@@ -20,69 +20,60 @@
 #include "BT_functions.h"
 #include "Encoding.h"
 #include "decode.h"
+#include "global_varibles.h"
 
 //global for the encode search
 char *encode_string;
 char *contents;
-
-//used for testing purposes
-void inorder(node *root) {
-//checks is root is NULL
-	if (root != NULL) {
-		//Goes left until nothing is there
-		inorder(root->left);
-		//prints out value of node
-		if (root->character != '\0') {
-			printf("Character: %c Frequency: %d\n", root->character,
-					root->frequency);
-		} else {
-			//printf("Character: NULL Frequency: %d\n", root->frequency);
-		}
-
-		//then goes right
-		inorder(root->right);
-	}
-}
+char *file_path = "src\\compress.txt";
 
 int main() {
 
+	setbuf(stdin, NULL);
+
+	char *text_file = "src\\short.txt";
+
+	printf("\n=============== Checking for Previous File ===============\n");
+
+	//deletes previous file, if cannot be deleted, returns -1
 	if (check_if_compress_exists() == -1)
 		return -1;
 
-	setbuf(stdin, NULL);
+	printf("\n=============== Start of Huffman Tree process ============\n");
 
-	char *array[130];
+	//-------------- Start of Huffman Tree process ------------------
 
-	char *file_path = "src\\message.txt";
-	read_file_into_array(file_path);
-	linked_list *llist3 = file_to_list(file_path);
+	//calls the function to create sorted linked list
+	linked_list *llist3 = file_to_list(text_file);
+
+	//from the sorted linked list it creates the Huffman Tree
+	// and returns the root node of the new tree
+
 	node *root = (node*) malloc(sizeof(node));
-	//linked_node *curr = llist3->start;
 	root = create_tree_from_linked_list(llist3);
 
-	binary_tree_to_array(root, array);
+	printf("\nTree has been created!\n");
 
-	//prints out the data of the tree inorder
-	//printf("===== Inorder ======\n");
+	//-------------- End of Huffman Tree process ------------------
 
-	//inorder(root);
+	printf("\n=============== Start of encoding process ================\n");
 
-	printf("================ start of encoding process ================\n");
+	//-------------- start of encoding process ------------------
 
-	//--------------start of encoding process ------------------
-	char *string = (char*) calloc(100 + 1, sizeof(char));
-	set_binary_tree_encode_val(root, string);
+	//sets the global variable contents to the text file contents
+	read_file_into_array(text_file);
 
-	for (int i = 0; i < strlen(contents); i++) {
-		find_binary_tree_encode_val(root, contents[i]);
-		printf("%s", encode_string);
-		CompressTree(encode_string);
-	}
-	//--------------end of encoding process --------------------
+	//encodes and saves the new file
+	encode_and_save(root);
 
-	printf("\n================ start of decoding process ================\n");
+	printf("\nEncoding has been completed!\n");
 
-	getFile(root);
+	//-------------- end of encoding process --------------------
+
+	printf("\n=============== Start of decoding process ================\n\n");
+
+	//Decodes and displays the message
+	decode_display(root);
 
 	return 0;
 

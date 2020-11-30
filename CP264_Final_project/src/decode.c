@@ -15,10 +15,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include "decode.h"
-
 #include "node_struct.h"
+#include "global_varibles.h"
 
-void getFile(node *root) {
+void decode_display(node *root) {
 //    Have a file pointer pointing to each character in the file
 //    Have a while loop to makes sure that the current._next is not NULL(Want to stop at leaf, leaf = letter)
 //    For each character if its a 1 traverse right tree
@@ -32,17 +32,20 @@ void getFile(node *root) {
 
 	node *curr = root;
 
-	readFile = fopen("src\\compress.txt", "r");
+	readFile = fopen(file_path, "r");
 
 	while (!feof(readFile)) {
 		fscanf(readFile, "%c", &letter);
 
+		//goes left if the character is a 0
 		if (letter == '0')
 			curr = curr->left;
 
+		//goes right if the character is a 1
 		else if (letter == '1')
 			curr = curr->right;
 
+		//if character is not NULL, prints out the character
 		if (curr->character != '\0') {
 			printf("%c", curr->character);
 			curr = root;

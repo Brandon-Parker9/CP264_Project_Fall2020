@@ -11,19 +11,33 @@
  */
 #define _CRT_NONSTDC_NO_DEPRECATE
 #include "Encoding.h"
+#include "global_varibles.h"
 
-void CompressTree(char *data) {
+void encode_and_save(node *root) {
+
+	char *string = (char*) calloc(100 + 1, sizeof(char));
+	set_binary_tree_encode_val(root, string);
+
+	for (int i = 0; i < strlen(contents); i++) {
+		find_binary_tree_encode_val(root, contents[i]);
+		// testing purposes - printf("%s", encode_string);
+		compress_tree(encode_string);
+	}
+
+}
+
+void compress_tree(char *data) {
 	/*
 	 * this function will take a integer value and saves it in
 	 * compress.dat value
 	 *
 	 *	How to call:
-	 *		CompressTree(data);
+	 *		compress_tree(data);
 	 */
 
 	FILE *file;
-	char location[] = "src\\compress.txt";
-	file = fopen(location, "ab");
+
+	file = fopen(file_path, "ab");
 	fwrite(data, sizeof(char), strlen(data), file);
 	fclose(file);
 	return;
@@ -31,10 +45,10 @@ void CompressTree(char *data) {
 
 int check_if_compress_exists(void) {
 	FILE *file;
-	if ((file = fopen("src\\compress.txt", "rb"))) {
+	if ((file = fopen(file_path, "rb"))) {
 		fclose(file);
-		if (remove("src\\compress.txt") == 0)
-			printf("\n Previous File Deleted successfully\n");
+		if (remove(file_path) == 0)
+			printf("\nPrevious File Deleted successfully\n");
 		else {
 			printf("Unable to delete the previous compression file");
 			return -1;
