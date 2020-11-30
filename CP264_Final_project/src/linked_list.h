@@ -5,8 +5,6 @@
  file description
  -------------------------------------
  Author:  Brandon Parker
- ID:      191593730
- Email:   park3730@mylaurier.ca
  Version  2020-11-19
  -------------------------------------
  */
@@ -58,6 +56,9 @@ node* join_end_nodes(linked_list *llist);
  * the linked list. Then joins their data
  * to create new node.
  *
+ * Parameters:
+ * 		llist as a linked list structure - (linked_list *)
+ *
  * Return:
  *  	new node (node*)
  *
@@ -67,8 +68,11 @@ linked_node* linked_list_newNode(node *node);
 /*
  * Creates new linked list node
  *
+ * Parameters:
+ * 	node as a BT node - (node *)
+ *
  * Return:
- * 		returns new linked node (linked_node*)
+ * 	returns new linked node (linked_node*)
  *
  */
 

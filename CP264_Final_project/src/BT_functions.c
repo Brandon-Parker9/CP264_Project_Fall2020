@@ -4,9 +4,7 @@
  Project: CP264_Final_project
  file description
  -------------------------------------
- Author:  Brandon Parker
- ID:      191593730
- Email:   park3730@mylaurier.ca
+ Author:  Brandon Parker, Rufael Musa
  Version  2020-11-22
  -------------------------------------
  */
@@ -16,6 +14,9 @@
 #include <stdlib.h>
 #include "node_struct.h"
 #include "linked_list.h"
+
+//This function created is not used, but it can be.
+//I worte it so I would have abetter understanding
 
 void binary_tree_to_array(node *root, char *array[]) {
 	/*
@@ -30,7 +31,7 @@ void binary_tree_to_array(node *root, char *array[]) {
 	 *
 	 *  Parameters:
 	 *
-	 *  	Also, use an array of like this - char *array[255];
+	 *  	Also, use an array of like this - char *array[130];
 	 *
 	 *	How to call:
 	 *		binary_tree_to_array(root, array);
